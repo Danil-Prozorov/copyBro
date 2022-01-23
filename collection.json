@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "688fca12-c2aa-4989-b0b0-0699b8b300ad",
+		"_postman_id": "836da2aa-93bb-45e0-a71e-31de2c4e3ede",
 		"name": "Dar.Finance (Test)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -30,12 +30,12 @@
 						"header": [
 							{
 								"key": "v",
-								"value": "{{v}}",
+								"value": "1",
 								"type": "text"
 							},
 							{
 								"key": "project",
-								"value": "{{project}}",
+								"value": "copybro",
 								"type": "text"
 							}
 						],
@@ -49,11 +49,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/auth.sendCode",
+							"raw": "http://copybro/api/auth.sendCode",
+							"protocol": "http",
 							"host": [
-								"{{host}}"
+								"copybro"
 							],
 							"path": [
+								"api",
 								"auth.sendCode"
 							]
 						}
@@ -80,12 +82,12 @@
 						"header": [
 							{
 								"key": "v",
-								"value": "{{v}}",
+								"value": "1",
 								"type": "text"
 							},
 							{
 								"key": "project",
-								"value": "{{project}}",
+								"value": "copybro",
 								"type": "text"
 							}
 						],
@@ -99,11 +101,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/auth.confirmCode",
+							"raw": "http://copybro/api/auth.confirmCode",
+							"protocol": "http",
 							"host": [
-								"{{host}}"
+								"copybro"
 							],
 							"path": [
+								"api",
 								"auth.confirmCode"
 							]
 						}
@@ -145,6 +149,216 @@
 							],
 							"path": [
 								"auth.logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user.get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "project",
+								"value": "copybro",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "f275482fe9f06beab377a55b6617d4ada90e6e95",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://copybro/api/user.get?user_id=1&phone=7900000000",
+							"protocol": "http",
+							"host": [
+								"copybro"
+							],
+							"path": [
+								"api",
+								"user.get"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "phone",
+									"value": "7900000000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user.update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "project",
+								"value": "copybro",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "f275482fe9f06beab377a55b6617d4ada90e6e95",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "phone",
+									"value": "+7-900-000-00-00",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "alex",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "someone",
+									"type": "text"
+								},
+								{
+									"key": "middle_name",
+									"value": "Some",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "tesT@test.coM",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://copybro/api/user.update",
+							"protocol": "http",
+							"host": [
+								"copybro"
+							],
+							"path": [
+								"api",
+								"user.update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "notifications.get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "project",
+								"value": "copybro",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "f275482fe9f06beab377a55b6617d4ada90e6e95",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://copybro/api/notifications.get?user_id=1&show_all=1",
+							"protocol": "http",
+							"host": [
+								"copybro"
+							],
+							"path": [
+								"api",
+								"notifications.get"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "show_all",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "notifications.read",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "project",
+								"value": "copybro",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "f275482fe9f06beab377a55b6617d4ada90e6e95",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://copybro/api/notifications.read",
+							"protocol": "http",
+							"host": [
+								"copybro"
+							],
+							"path": [
+								"api",
+								"notifications.read"
 							]
 						}
 					},

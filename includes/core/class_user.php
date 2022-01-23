@@ -56,12 +56,46 @@ class User {
 
     // TEST
 
-    public static function owner_info() {
-        // your code here ...
+    public static function owner_info($data) {
+        return self::user_info($data);
     }
 
     public static function owner_update($data = []) {
-        // your code here ...
+        //vars
+        $request = '';
+        // validate
+
+        // validate phone number
+        $invalid_chars = ['+','-','a','b','c','d','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+        $correct_phone = str_replace($invalid_chars,'',$data['phone']);
+        // transform email to lower case
+        $correct_email = mb_strtolower($data['email']);
+
+        if (empty($data)) return error_response(2000,'empty data array received');
+        if (strlen($correct_phone) > 11 || strlen($correct_phone) < 11) return error_response(1009,'incorrect phone number');
+        // checking first name
+        if ($data['first_name'] != '') { $request .= "first_name='".$data['first_name']."' "; }
+        else return error_response(1009,'first name is required');
+        // checking last name
+        if ($data['last_name'] != '') { $request .= "last_name='".$data['last_name']."' ";}
+        else return error_response(1009,'last name is required');
+        // checking middle name and email
+        if ($data['middle_name'] != '') { $request .= "middle_name='".$data['middle_name']."' "; }
+        if ($correct_email != '') { $request .= "email='".$correct_email."' ";}
+        // checking phone
+        if ($correct_phone) { $request .= "phone=".$correct_phone." "; }
+        else return error_response(1009,'phone number is required');
+        // refactor request string
+        $request = trim($request);
+        $request = str_replace(' ', ', ',$request);
+
+        // INSERT
+        DB::query("UPDATE users SET ".$request." WHERE users.user_id = ".$data['id'].";") or die (DB::error());
+        // Create new notify
+        Notification::createNotify($data['id'], 'profile updated', 'Your profile was successfully updated');
+
+        return response('Profile was successfully updated');
+
     }
 
 }

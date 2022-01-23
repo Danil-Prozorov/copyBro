@@ -37,6 +37,16 @@ class Route {
 
     private static function route_common() {
         if (self::$path == 'home') return controller_home();
+        // auth routes
+        if (self::$path == 'api/auth.sendCode') return controller_sendCode(Route::$query);
+        if (self::$path == 'api/auth.confirmCode') return controller_confirmCode(Route::$query);
+        // user routes
+        if (self::$path == 'api/user.get') return controller_get_user_info(Route::$query);
+        if (self::$path == 'api/user.update') return controller_update_user(Route::$query);
+        // notify routes
+        if (self::$path == 'api/notifications.get') return controller_show_new_notify(Route::$query);
+        if (self::$path == 'api/notifications.read') return controller_read_all_notify(Route::$query);
+
         return '';
     }
 
